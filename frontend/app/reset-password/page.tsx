@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +9,8 @@ import { Gift, ArrowLeft, Mail, KeyRound } from "lucide-react";
 import Link from "next/link";
 import api from "@/lib/api";
 
-export default function ResetPasswordPage() {
+// Основной компонент, который использует useSearchParams
+function ResetPasswordContent() {
   const [email, setEmail] = useState("");
   const [token, setToken] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -19,7 +19,6 @@ export default function ResetPasswordPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  // Если в URL есть токен, переходим сразу к шагу сброса
   React.useEffect(() => {
     const urlToken = searchParams.get('token');
     if (urlToken) {
@@ -47,7 +46,6 @@ export default function ResetPasswordPage() {
     e.preventDefault();
     setLoading(true);
     
-    // Проверка сложности пароля
     if (newPassword.length < 6) {
       alert("Пароль должен быть не менее 6 символов");
       setLoading(false);
@@ -180,5 +178,14 @@ export default function ResetPasswordPage() {
         </CardFooter>
       </Card>
     </div>
+  );
+}
+
+// Экспортируем страницу с обёрткой Suspense
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto py-8 flex items-center justify-center min-h-screen">Загрузка...</div>}>
+      <ResetPasswordContent />
+    </Suspense>
   );
 }
