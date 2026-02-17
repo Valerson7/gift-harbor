@@ -1,0 +1,141 @@
+### Получить токен
+POST http://localhost:8080/auth/token
+Content-Type: application/x-www-form-urlencoded
+
+username=test@example.com
+&password=secret123
+&grant_type=password
+
+### Проверить /me с токеном
+GET http://localhost:8080/auth/me
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTExNDIyfQ.28CXiF0sb6pvRIc-H_gcn55xfAHs8pGHVIyb6C_ZIe0
+
+### 1. СОЗДАТЬ ВИШЛИСТ
+POST http://localhost:8080/wishlists
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTExNDIyfQ.28CXiF0sb6pvRIc-H_gcn55xfAHs8pGHVIyb6C_ZIe0
+Content-Type: application/json
+
+{
+    "title": "Мой первый вишлист",
+    "description": "Подарки на день рождения",
+    "is_public": true
+}
+
+### 2. ПОЛУЧИТЬ ВСЕ ВИШЛИСТЫ
+GET http://localhost:8080/wishlists
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTExNDIyfQ.28CXiF0sb6pvRIc-H_gcn55xfAHs8pGHVIyb6C_ZIe0
+
+### 3. ПОЛУЧИТЬ ОДИН ВИШЛИСТ (ЗАМЕНИТЬ ID)
+GET http://localhost:8080/wishlists/1
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTExNDIyfQ.28CXiF0sb6pvRIc-H_gcn55xfAHs8pGHVIyb6C_ZIe0
+
+### 4. ОБНОВИТЬ ВИШЛИСТ (ЗАМЕНИТЬ ID)
+PUT http://localhost:8080/wishlists/1
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTExNDIyfQ.28CXiF0sb6pvRIc-H_gcn55xfAHs8pGHVIyb6C_ZIe0
+Content-Type: application/json
+
+{
+    "title": "Обновлённый вишлист",
+    "description": "Теперь с новым описанием",
+    "is_public": true
+}
+
+### 5. УДАЛИТЬ ВИШЛИСТ (ЗАМЕНИТЬ ID)
+DELETE http://localhost:8080/wishlists/1
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTExNDIyfQ.28CXiF0sb6pvRIc-H_gcn55xfAHs8pGHVIyb6C_ZIe0
+
+### 6. ДОБАВИТЬ ТОВАР В ВИШЛИСТ (ЗАМЕНИТЬ ID ВИШЛИСТА)
+POST http://localhost:8080/items
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE2Nzc5fQ.57eP55VmwyeaKbjhHM851MhaZ4vsV8scbxqcwYbS2lA
+Content-Type: application/json
+
+{
+    "wishlist_id": 1,
+    "name": "Наушники Sony WH-1000XM5",
+    "description": "Лучшие беспроводные наушники с шумоподавлением",
+    "price": 349,
+    "url": "https://www.sony.com/...",
+    "image_url": "https://example.com/sony.jpg"
+}
+
+### 7. ПОЛУЧИТЬ ВСЕ ТОВАРЫ ВИШЛИСТА
+GET http://localhost:8080/items/wishlist/1
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE2Nzc5fQ.57eP55VmwyeaKbjhHM851MhaZ4vsV8scbxqcwYbS2lA
+
+### 8. ПОЛУЧИТЬ ОДИН ТОВАР
+GET http://localhost:8080/items/1
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE2Nzc5fQ.57eP55VmwyeaKbjhHM851MhaZ4vsV8scbxqcwYbS2lA
+
+### 9. ОБНОВИТЬ ТОВАР
+PUT http://localhost:8080/items/1
+Authorization: Bearer 
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE2Nzc5fQ.57eP55VmwyeaKbjhHM851MhaZ4vsV8scbxqcwYbS2lA
+Content-Type: application/json
+
+{
+    "price": 329
+}
+
+### 10. УДАЛИТЬ ТОВАР
+DELETE http://localhost:8080/items/1
+Authorization: Bearer
+access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE2Nzc5fQ.57eP55VmwyeaKbjhHM851MhaZ4vsV8scbxqcwYbS2lA
+
+### 11. ЗАРЕЗЕРВИРОВАТЬ ТОВАР
+POST http://localhost:8080/reservations
+Authorization: Bearer 
+"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE4MDMxfQ.NBRvjU5ESUDEFKVbfzHVYdDaHN3oq3z2sTCB2IUznEc
+Content-Type: application/json
+
+{
+    "item_id": 1
+}
+
+### 12. ПРОВЕРИТЬ СТАТУС РЕЗЕРВАЦИИ (публично)
+GET http://localhost:8080/reservations/item/1
+
+### 13. ОТМЕНИТЬ РЕЗЕРВАЦИЮ
+DELETE http://localhost:8080/reservations/1
+Authorization: Bearer 
+"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE4MDMxfQ.NBRvjU5ESUDEFKVbfzHVYdDaHN3oq3z2sTCB2IUznEc
+
+### 14. ВНЕСТИ ВКЛАД В ТОВАР
+POST http://localhost:8080/contributions
+Authorization: Bearer 
+"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE5Nzg1fQ.jOxP3QmgS_yOEUJzD1fIE2q15iObUJL-kpqVMNXaG14
+Content-Type: application/json
+
+{
+    "item_id": 1,
+    "amount": 50
+}
+
+### 15. ПРОВЕРИТЬ ПРОГРЕСС СБОРА
+GET http://localhost:8080/contributions/item/1/progress
+
+### 16. УЗНАТЬ, СКОЛЬКО ВНЁС Я
+GET http://localhost:8080/contributions/item/1/my-contribution
+Authorization: Bearer 
+"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE5Nzg1fQ.jOxP3QmgS_yOEUJzD1fIE2q15iObUJL-kpqVMNXaG14
+
+### 17. ПОСМОТРЕТЬ ВСЕ ВКЛАДЫ (ТОЛЬКО ДЛЯ ВЛАДЕЛЬЦА)
+GET http://localhost:8080/contributions/item/1/all
+Authorization: Bearer 
+"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNzcxMTE5OTQzfQ.knBwvW8BtdeoLR8OdqwJv1DXDFbaKLV03hPnzuDo9Ow
+
+### Тест восстановления пароля
+POST http://localhost:8080/auth/forgot-password
+Content-Type: application/json
+
+{
+    "email": "valersonik23@gmail.com"
+}
