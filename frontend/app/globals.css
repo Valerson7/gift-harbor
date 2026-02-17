@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #FFF9F0;
+  --color-foreground: #4A4A4A;
+  
+  --color-primary: #FFB347;
+  --color-secondary: #A7D0CD;
+  
+  --color-peach: #FFDAB9;
+  --color-terracotta: #CC7F4B;
+  --color-titian: #A0522D;
+  --color-storm: #2F4F4F;
+  
+  --font-sans: var(--font-inter), sans-serif;
+  --font-jakarta: var(--font-jakarta), sans-serif;
+  --font-playfair: var(--font-playfair), serif;
+  
+  --radius-4xl: 2rem;
+  --radius-3xl: 1.5rem;
+  --radius-2xl: 1rem;
+  --radius-xl: 0.75rem;
+}
+
+@layer utilities {
+  .btn-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .btn-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
